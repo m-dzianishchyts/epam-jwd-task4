@@ -1,4 +1,4 @@
-package by.epamtc.processing.util.provider;
+package by.epamtc.text.util.providers;
 
 public class FileException extends Exception {
 

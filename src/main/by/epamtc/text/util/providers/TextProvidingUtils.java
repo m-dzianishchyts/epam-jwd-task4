@@ -1,4 +1,4 @@
-package by.epamtc.processing.util.provider;
+package by.epamtc.text.util.providers;
 
 import java.io.BufferedInputStream;
 import java.io.File;
