@@ -5,17 +5,29 @@ import java.util.function.Predicate;
 
 public class WordPredicate {
 
-    public static final Predicate<String> VOWEL_PREFIX_PREDICATE = word -> {
+    public static final Predicate<String> VOWEL_PREFIX_PREDICATE_STRING_IMPLEMENTATION = word -> {
         if (word == null || word.isEmpty()) {
             return false;
         }
         return isVowel(word.charAt(0));
     };
-    public static final Predicate<String> CONSONANT_PREFIX_PREDICATE = word -> {
+    public static final Predicate<String> CONSONANT_PREFIX_PREDICATE_STRING_IMPLEMENTATION = word -> {
         if (word == null || word.isEmpty()) {
             return false;
         }
         return isConsonant(word.charAt(0));
+    };
+    public static final Predicate<char[]> VOWEL_PREFIX_PREDICATE_CHAR_ARRAY_IMPLEMENTATION = word -> {
+        if (word == null || word.length == 0) {
+            return false;
+        }
+        return isVowel(word[0]);
+    };
+    public static final Predicate<char[]> CONSONANT_PREFIX_PREDICATE_CHAR_ARRAY_IMPLEMENTATION = word -> {
+        if (word == null || word.length == 0) {
+            return false;
+        }
+        return isConsonant(word[0]);
     };
 
     private static final Set<Character> ENGLISH_VOWELS = Set.of('a', 'e', 'i', 'o', 'u');
@@ -27,13 +39,13 @@ public class WordPredicate {
                                                                     'н', 'п', 'р', 'с', 'т', 'ф', 'х', 'ц', 'ч', 'ш',
                                                                     'щ', 'ъ', 'ь');
 
-    public static Predicate<String> specifyWordLength(int wordLength) {
+    public static Predicate<String> specifyWordAsStringLength(int wordLength) {
         Predicate<String> predicate = word -> word.length() == wordLength;
         return predicate;
     }
 
-    public static Predicate<String> specifyPrefix(char prefix) {
-        Predicate<String> predicate = word -> word.startsWith(String.valueOf(prefix));
+    public static Predicate<char[]> specifyWordAsCharArrayLength(int wordLength) {
+        Predicate<char[]> predicate = word -> word.length == wordLength;
         return predicate;
     }
 
