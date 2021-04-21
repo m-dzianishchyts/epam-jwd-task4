@@ -6,8 +6,8 @@ import java.util.regex.Pattern;
 
 public final class TextProcessingRegexUtils {
 
-    private static final String LETTER_DIGIT_CLASS = "[A-Za-zА-Яа-я0-9]";
-    private static final String NON_LETTER_SPACE_CLASS = "[^A-Za-zА-Яа-я ]";
+    private static final String LETTER_DIGIT_CLASS = "[A-Za-zА-ЯЁа-яё0-9]";
+    private static final String NON_LETTER_SPACE_CLASS = "[^A-Za-zА-ЯЁа-яё ]";
     private static final Pattern WORD_PATTERN = Pattern.compile(LETTER_DIGIT_CLASS + "+");
 
     private TextProcessingRegexUtils() {
@@ -31,11 +31,11 @@ public final class TextProcessingRegexUtils {
         return builder.toString();
     }
 
-    public static String replaceEachLetterAfter(String text, char letterBehind, char letterToReplace, char replacement)
+    public static String replaceEachLetterAfter(String text, char charBehind, char charToReplace, char replacement)
             throws TextProcessingException {
         checkTextOnNull(text);
-        String wrongSequence = String.format("%c%c", letterBehind, letterToReplace);
-        String rightSequence = String.format("%c%c", letterBehind, replacement);
+        String wrongSequence = String.format("%c%c", charBehind, charToReplace);
+        String rightSequence = String.format("%c%c", charBehind, replacement);
         String result = text.replaceAll(wrongSequence, rightSequence);
         return result;
     }
