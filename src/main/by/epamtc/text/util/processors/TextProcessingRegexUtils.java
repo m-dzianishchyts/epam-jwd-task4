@@ -6,9 +6,8 @@ import java.util.regex.Pattern;
 
 public final class TextProcessingRegexUtils {
 
-    private static final String LETTER_DIGIT_CLASS = "[A-Za-zА-ЯЁа-яё0-9]";
-    private static final String NON_LETTER_SPACE_CLASS = "[^A-Za-zА-ЯЁа-яё ]";
-    private static final Pattern WORD_PATTERN = Pattern.compile(LETTER_DIGIT_CLASS + "+");
+    private static final Pattern NON_LETTER_SPACE_SEQUENCE_PATTERN = Pattern.compile("[^A-Za-zА-ЯЁа-яё ]+");
+    private static final Pattern WORD_PATTERN = Pattern.compile("[A-Za-zА-ЯЁа-яё0-9]+");
 
     private TextProcessingRegexUtils() {
     }
@@ -64,8 +63,7 @@ public final class TextProcessingRegexUtils {
     public static String removeAllNotAlphabeticExceptSpaces(String text) throws TextProcessingException {
         checkTextOnNull(text);
         StringBuilder builder = new StringBuilder();
-        Pattern nonLetterSpaceSequencePattern = Pattern.compile(NON_LETTER_SPACE_CLASS + "+");
-        Matcher nonLetterSpaceSequenceMatcher = nonLetterSpaceSequencePattern.matcher(text);
+        Matcher nonLetterSpaceSequenceMatcher = NON_LETTER_SPACE_SEQUENCE_PATTERN.matcher(text);
         while (nonLetterSpaceSequenceMatcher.find()) {
             int positionBeforeGroup = nonLetterSpaceSequenceMatcher.start() - 1;
             int positionAfterGroup = nonLetterSpaceSequenceMatcher.end();
