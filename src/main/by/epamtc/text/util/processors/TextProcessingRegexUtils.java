@@ -6,8 +6,9 @@ import java.util.regex.Pattern;
 
 public final class TextProcessingRegexUtils {
 
-    private static final Pattern NON_LETTER_SPACE_SEQUENCE_PATTERN = Pattern.compile("[^A-Za-zА-ЯЁа-яё ]+");
-    private static final Pattern WORD_PATTERN = Pattern.compile("[A-Za-zА-ЯЁа-яё0-9]+");
+    private static final Pattern NON_LETTER_SPACE_SEQUENCE_PATTERN = Pattern
+            .compile("[^a-zа-яё ]+", Pattern.CASE_INSENSITIVE);
+    private static final Pattern WORD_PATTERN = Pattern.compile("[a-zа-яё0-9]+", Pattern.CASE_INSENSITIVE);
 
     private TextProcessingRegexUtils() {
     }
